@@ -19,6 +19,8 @@ runs:
         echo "Current directory: $(pwd)"
         echo "Listing:"
         ls -al        
+        echo "Listing:"
+        ls -al ../        
     # - run: ./notify.sh \
     #     "${{ inputs.github_workflow }}" \
     #     "${{ inputs.github_repository }}" \
