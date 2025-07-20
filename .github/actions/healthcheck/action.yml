@@ -1,0 +1,36 @@
+name: Slack Notifier
+description: Sends a message to Slack
+inputs:
+  github_workflow:
+    required: true
+  github_repository:
+    required: true
+  github_run_id:
+    required: true  
+  step_conclusion:
+    required: true
+  slack_webhook:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        echo "Sending Slack notification for to failed steps."
+        COLOR="#FF0000"
+        attachment='{
+          "attachments": [
+              {
+                  "color": "${COLOR}",
+                  "title": "SecureSDLC GitHub Workflow ${{ input.github_workflow }} state: ${{ input.step_conclusion }}",
+                  "title_link": "${{ github.repository }}",
+                  "fields": [
+                      {
+                          "value": "GitHub Workflow: https://github.com/${{ input.github_repository }}/actions/runs/${{ input.github_run_id }}",
+                      }
+                  ],
+                  "footer": "Dashboard: https://grafana.ops.kraken.zone/dashboards/f/tf-appsec/devsecops",
+              }
+          ]
+        }'
+        curl -s -X POST -H "Content-type: application/json" --data "$attachment" "${{ inputs.slack_webhook }}"
