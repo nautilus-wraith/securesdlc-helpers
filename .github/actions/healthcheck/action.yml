@@ -24,11 +24,11 @@ runs:
           "attachments": [
             {
               "color": "${COLOR}",
-              "title": "SecureSDLC GitHub Workflow ${{ inputs.github_workflow }} state: ${{ inputs.step_conclusion }}",
+              "title": "GitHub Workflow in ${{ inputs.step_conclusion }} state for ${{ inputs.github_repository }}",
               "title_link": "https://github.com/${{ inputs.github_repository }}",
               "fields": [
                 {
-                  "value": "GitHub Workflow: https://github.com/${REPOSITORY}/actions/runs/${{ inputs.github_run_id }}"
+                  "value": "Failed GitHub workflow \"${{ inputs.github_workflow }}\"": https://github.com/${{ inputs.github_repository }}/actions/runs/${{ inputs.github_run_id }}"
                 }
               ],
               "footer": "Dashboard: https://grafana.ops.kraken.zone/dashboards/f/tf-appsec/devsecops"
