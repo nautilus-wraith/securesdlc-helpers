@@ -16,15 +16,27 @@ runs:
   using: "composite"
   steps:
     - run: |
-        echo "Current directory: $(pwd)"
-        echo "Listing:"
-        ls -al        
-        echo "Listing:"
-        ls -al ../        
-    # - run: ./notify.sh \
-    #     "${{ inputs.github_workflow }}" \
-    #     "${{ inputs.github_repository }}" \
-    #     "${{ inputs.github_run_id }}" \
-    #     "${{ inputs.step_conclusion }}" \
-    #     "${{ inputs.slack_webhook }}"
+        echo "Sending Slack notification for failed steps."
+
+        COLOR="#FF0000"
+        ATTACHMENT=$(cat <<EOF
+        {
+          "attachments": [
+            {
+              "color": "${COLOR}",
+              "title": "SecureSDLC GitHub Workflow ${{ inputs.github_workflow }} state: ${{ inputs.step_conclusion }}",
+              "title_link": "https://github.com/${{ inputs.github_repository }}",
+              "fields": [
+                {
+                  "value": "GitHub Workflow: https://github.com/${REPOSITORY}/actions/runs/${{ inputs.github_run_id }}"
+                }
+              ],
+              "footer": "Dashboard: https://grafana.ops.kraken.zone/dashboards/f/tf-appsec/devsecops"
+            }
+          ]
+        }
+        EOF
+        )
+
+        curl -s -X POST -H "Content-type: application/json" --data "$ATTACHMENT" "${{ inputs.slack_webhook }}"
       shell: bash  
