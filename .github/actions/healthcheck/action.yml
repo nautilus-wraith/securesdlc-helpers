@@ -15,10 +15,14 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ./notify.sh \
-        "${{ inputs.github_workflow }}" \
-        "${{ inputs.github_repository }}" \
-        "${{ inputs.github_run_id }}" \
-        "${{ inputs.step_conclusion }}" \
-        "${{ inputs.slack_webhook }}"
+    - run: |
+        echo "Current directory: $(pwd)"
+        echo "Listing:"
+        ls -al        
+    # - run: ./notify.sh \
+    #     "${{ inputs.github_workflow }}" \
+    #     "${{ inputs.github_repository }}" \
+    #     "${{ inputs.github_run_id }}" \
+    #     "${{ inputs.step_conclusion }}" \
+    #     "${{ inputs.slack_webhook }}"
       shell: bash  
