@@ -15,7 +15,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ./notify.sh \
+    - run: ./.github/actions/healthcheck/notify.sh \
         "${{ inputs.github_workflow }}" \
         "${{ inputs.github_repository }}" \
         "${{ inputs.github_run_id }}" \
