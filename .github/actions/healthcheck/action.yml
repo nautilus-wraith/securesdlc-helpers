@@ -15,10 +15,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ./.github/actions/healthcheck/notify.sh \
+    - run: ./notify.sh \
         "${{ inputs.github_workflow }}" \
         "${{ inputs.github_repository }}" \
         "${{ inputs.github_run_id }}" \
-        "${{ inputs.step_conclusion }}" \        
+        "${{ inputs.step_conclusion }}" \
         "${{ inputs.slack_webhook }}"
       shell: bash  
