@@ -31,7 +31,7 @@ runs:
                   "value": "Failed workflow \"${{ inputs.github_workflow }}\": https://github.com/${{ inputs.github_repository }}/actions/runs/${{ inputs.github_run_id }}"
                 }
               ],
-              "footer": "Dashboard: https://grafana.ops.kraken.zone/dashboards/f/tf-appsec/devsecops"
+              "footer": "Dashboard: n/a"
             }
           ]
         }
