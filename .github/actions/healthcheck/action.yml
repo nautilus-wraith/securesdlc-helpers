@@ -33,7 +33,7 @@ runs:
               "title_link": "https://github.com/${{ inputs.github_repository }}",
               "fields": [
                 {
-                      "value": "$SLACK_MESSAGE"
+                  "value": "$SLACK_MESSAGE"
                 }
               ],
               "footer": "Dashboard: n/a"
