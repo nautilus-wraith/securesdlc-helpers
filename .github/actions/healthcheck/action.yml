@@ -2,7 +2,7 @@ name: Slack Notifier
 description: Sends a message to Slack
 inputs:
   github_workflow:
-    required: true
+    required: false
   github_repository:
     required: true
   github_run_id:
@@ -19,6 +19,11 @@ runs:
         echo "Sending Slack notification for failed steps."
 
         COLOR="#FF0000"
+            if [ -z "${{ inputs.github_workflow }}" ]; then
+              SLACK_MESSAGE="The repo does not have any workflows, hence some pipelines are failing"
+            else
+              SLACK_MESSAGE="Failed workflow \"${{ inputs.github_workflow }}\": https://github.com/${{ inputs.github_repository }}/actions/runs/${{ inputs.github_run_id }}"
+            fi
         ATTACHMENT=$(cat <<EOF
         {
           "attachments": [
@@ -28,7 +33,7 @@ runs:
               "title_link": "https://github.com/${{ inputs.github_repository }}",
               "fields": [
                 {
-                  "value": "Failed workflow \"${{ inputs.github_workflow }}\": https://github.com/${{ inputs.github_repository }}/actions/runs/${{ inputs.github_run_id }}"
+                      "value": "$SLACK_MESSAGE"
                 }
               ],
               "footer": "Dashboard: n/a"
