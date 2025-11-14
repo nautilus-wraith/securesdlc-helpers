@@ -38,5 +38,5 @@ runs:
         EOF
         )
 
-        curl -s -X POST -H "Content-type: application/json" --data "$ATTACHMENT" "${{ inputs.slack_webhook }}"
+        curl -X POST -H "Content-type: application/json" --data "$ATTACHMENT" "${{ inputs.slack_webhook }}"
       shell: bash  
