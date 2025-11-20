@@ -6,7 +6,7 @@ inputs:
   github_repository:
     required: true
   github_run_id:
-    required: true  
+    required: true
   step_conclusion:
     required: true
   slack_webhook:
