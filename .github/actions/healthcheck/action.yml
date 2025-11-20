@@ -7,8 +7,6 @@ inputs:
     required: true
   github_run_id:
     required: true
-  github_job:
-    required: true
   step_conclusion:
     required: true
   slack_webhook:
@@ -30,11 +28,8 @@ runs:
               "title_link": "https://github.com/${{ inputs.github_repository }}",
               "fields": [
                 {
-                  "value": "Failed Workflow \"${{ inputs.github_workflow }}\": https://github.com/${{ inputs.github_repository }}/actions/runs/${{ inputs.github_run_id }}"
-                },
-                {
-                  "value": "Failed Job \"${{ inputs.github_workflow }}\": https://github.com/${{ inputs.github_repository }}/actions/runs/${{ inputs.github_run_id }}/job/${{ inputs.github_job }}"
-                }                
+                  "value": "Failed workflow \"${{ inputs.github_workflow }}\": https://github.com/${{ inputs.github_repository }}/actions/runs/${{ inputs.github_run_id }}"
+                }
               ],
               "footer": "Dashboard: n/a"
             }
