@@ -7,7 +7,7 @@ inputs:
     required: true
   github_run_id:
     required: true
-  github.job:
+  github_job:
     required: true
   step_conclusion:
     required: true
