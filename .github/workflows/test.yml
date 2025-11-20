@@ -30,6 +30,7 @@ jobs:
           persist-credentials: false
 
       - name: Detect workflow YAMLs
+        id: joburl
         shell: bash
         run: exit 1
 
@@ -40,7 +41,7 @@ jobs:
           github_workflow: ${{ github.workflow }}
           github_repository: ${{ github.repository }}
           github_run_id: ${{ github.run_id }}
-          github_job: ${{ github.job }}
+          github_job: ${{ steps.joburl.outputs.job_html_url }}
           step_conclusion: ${{ steps.failing.conclusion }}
           slack_webhook: ${{ secrets.SDLC_SLACK_NOTIFICATIONS }}          
 
