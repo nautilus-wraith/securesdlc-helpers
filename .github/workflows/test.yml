@@ -41,7 +41,7 @@ jobs:
           github_workflow: ${{ github.workflow }}
           github_repository: ${{ github.repository }}
           github_run_id: ${{ github.run_id }}
-          github_job: ${{ steps.joburl.outputs.job_html_url }}
+          github_job: ${{ steps.joburl.outputs.job_id }}
           step_conclusion: ${{ steps.failing.conclusion }}
           slack_webhook: ${{ secrets.SDLC_SLACK_NOTIFICATIONS }}          
 
