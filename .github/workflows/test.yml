@@ -29,13 +29,13 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Detect workflow YAMLs
+      - name: Error
         id: joburl
         shell: bash
-        run: exit 1
+        run: exit 0
 
       - name: Notify in Slack on failure
-        if: failure()
+        if: success()
         uses: nautilus-wraith/securesdlc-helpers/.github/actions/healthcheck@main
         with:
           github_workflow: ${{ github.workflow }}
